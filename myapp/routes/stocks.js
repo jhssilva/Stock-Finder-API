@@ -8,18 +8,22 @@ const myFinancialMPController = new financialMPController();
 
 /* GET stocks listing. */
 router.get("/", function (req, res, next) {
-  myFinancialMPController.stocksList(function (err, data) {
+  myFinancialMPController.stocksListWithFinancialStatements(function (
+    err,
+    data
+  ) {
     if (err) return res.send(err);
     res.send(data);
   });
 });
-/* GET stocks listing. */
 
 /**
  * GET Stock Test
  */
 
-router.get("/test", function (req, res, next) {});
+router.get("/test", function (req, res, next) {
+  res.send("Teste");
+});
 
 /**
  * GET Stock Test
