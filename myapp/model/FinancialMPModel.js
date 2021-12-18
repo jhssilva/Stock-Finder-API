@@ -9,3 +9,6 @@ module.exports = class FinancialMPModel {
     this.financialStatementSymbolsList = "financial-statement-symbol-lists";
   }
 };
+
+
+// MODEL Values that will return to the controller

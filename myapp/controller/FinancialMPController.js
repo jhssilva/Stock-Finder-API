@@ -1,6 +1,6 @@
 const FinancialMPModel = require("../model/FinancialMPModel");
-const myFinancialMPModel = new FinancialMPModel();
 const RequestModel = require("../model/RequestModel");
+const myFinancialMPModel = new FinancialMPModel();
 const myRequest = new RequestModel();
 
 const https = require("https");
@@ -8,13 +8,23 @@ const https = require("https");
 module.exports = class FinancialMPController {
   constructor() {}
 
-  financialStatementSymbolsList() {
+  stocksList(callback) {
     this.request(
       myRequest.get,
-      myFinancialMPModel.financialStatementSymbolsList
+      myFinancialMPModel.financialStatementSymbolsList,
+      function (err, data) {
+        if (err) return callback(null, err);
+        return callback(data, false);
+      }
     );
   }
 
+  /**
+   *  Default Request to Financial MP
+   * @param {*} typeOfRequest
+   * @param {*} endpoint
+   * @param {*} callback
+   */
   request(typeOfRequest, endpoint, callback) {
     let body = [];
 
