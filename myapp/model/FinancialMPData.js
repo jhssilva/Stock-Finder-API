@@ -7,6 +7,6 @@ module.exports = class FinancialMPData {
 
 class Stock {
   constructor() {
-    this.symbol = "";
+    this.symbol;
   }
 }

@@ -25,7 +25,7 @@ class FinancialModelingPrep {
         this.cashFlowStatementAsReported = "cash-flow-statement-as-reported";
         this.financialStatementAsReported =
           "financial-statement-full-as-reported";
-        this.annualReportOnForm10k = "financial-reports-json";
+        this.annualReportOnForm10K = "financial-reports-json";
         this.companyProfile = "profile";
         this.mostLosers = "losers";
         this.mostActives = "actives";
