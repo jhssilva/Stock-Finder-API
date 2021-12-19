@@ -1,9 +1,17 @@
 const { MongoClient } = require("mongodb");
+const secretConstants = require("./secret");
+const secretsData = secretConstants;
 
 //https://www.mongodb.com/blog/post/quick-start-nodejs-mongodb-how-to-get-connected-to-your-database
 async function main() {
   const uri =
-    "mongodb+srv://jhssilva:templarios@cluster0.dzyhs.mongodb.net/test?retryWrites=true&w=majority";
+    "mongodb+srv://" +
+    secretsData.user +
+    ":" +
+    secretsData.password +
+    "@" +
+    secretsData.host +
+    "/test?retryWrites=true&w=majority";
 
   const client = new MongoClient(uri);
 
