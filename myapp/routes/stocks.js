@@ -6,6 +6,8 @@ const RequestModel = require("../model/RequestModel");
 const financialMPController = require("../controller/FinancialMPController");
 const myFinancialMPController = new financialMPController();
 
+const db = require("../model/mongodb/connection");
+
 /* GET stocks listing. */
 router.get("/", function (req, res, next) {
   myFinancialMPController.stocksListWithFinancialStatements(function (
@@ -36,13 +38,14 @@ router.get("/income-statement", function (req, res, next) {
 router.get("/test", function (req, res, next) {
   //JSON.stringify(obj, null, 4);
   //console.log(req);
-  console.log("URL: " + req.url);
-  console.log("Method: " + req.method);
-  console.log("ParsedURL: " + JSON.stringify(req._parsedUrl, null, 4));
-  console.log("Query: " + JSON.stringify(req.query, null, 4));
-  console.log(
-    "ParsedOriginalURL: " + JSON.stringify(req._parsedOriginalUrl, null, 4)
-  );
+  // console.log("URL: " + req.url);
+  // console.log("Method: " + req.method);
+  // console.log("ParsedURL: " + JSON.stringify(req._parsedUrl, null, 4));
+  // console.log("Query: " + JSON.stringify(req.query, null, 4));
+  // console.log(
+  //   "ParsedOriginalURL: " + JSON.stringify(req._parsedOriginalUrl, null, 4)
+  // );
+
   res.send("Teste");
 });
 
