@@ -23,6 +23,21 @@ module.exports = class FinancialMPController {
       }
     );
   }
-
-  incomeStatementStock(stock, callback) {}
+  /**
+   *  Stock Income Statements
+   * @param {*} stock
+   * @param {*} callback
+   */
+  stockIncomeStatements(stock, callback) {
+    requestManager.request(
+      requestModel.typeOfRequest.get,
+      requestModel.financialModelingPrep.endPoints.incomeStatement +
+        "/" +
+        stock,
+      function (err, data) {
+        if (err) return callback(null, err);
+        return callback(data, false);
+      }
+    );
+  }
 };

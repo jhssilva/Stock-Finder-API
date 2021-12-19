@@ -18,10 +18,31 @@ router.get("/", function (req, res, next) {
 });
 
 /**
+ * GET Income Statement
+ */
+router.get("/income-statement", function (req, res, next) {
+  //Check security?! Or should I do this in the controller?
+  let stock = req.query.stock;
+  myFinancialMPController.stockIncomeStatements(stock, function (err, data) {
+    if (err) return res.send(err);
+    res.send(data);
+  });
+});
+
+/**
  * GET Stock Test
  */
 
 router.get("/test", function (req, res, next) {
+  //JSON.stringify(obj, null, 4);
+  //console.log(req);
+  console.log("URL: " + req.url);
+  console.log("Method: " + req.method);
+  console.log("ParsedURL: " + JSON.stringify(req._parsedUrl, null, 4));
+  console.log("Query: " + JSON.stringify(req.query, null, 4));
+  console.log(
+    "ParsedOriginalURL: " + JSON.stringify(req._parsedOriginalUrl, null, 4)
+  );
   res.send("Teste");
 });
 
