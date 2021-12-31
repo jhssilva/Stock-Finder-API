@@ -7,6 +7,8 @@ const financialMPController = require("../controller/FinancialMPController");
 const myFinancialMPController = new financialMPController();
 
 const db = require("../model/mongodb/connection");
+const CRUD = require("../model/mongodb/CRUD");
+const CRUDFunctions = new CRUD();
 
 /* GET stocks listing. */
 router.get("/", function (req, res, next) {
@@ -32,10 +34,10 @@ router.get("/income-statement", function (req, res, next) {
 });
 
 /**
- * GET Stock Test
+ * POST Stock Test
  */
 
-router.get("/test", function (req, res, next) {
+router.post("/test", async function (req, res, next) {
   //JSON.stringify(obj, null, 4);
   //console.log(req);
   // console.log("URL: " + req.url);
@@ -45,12 +47,13 @@ router.get("/test", function (req, res, next) {
   // console.log(
   //   "ParsedOriginalURL: " + JSON.stringify(req._parsedOriginalUrl, null, 4)
   // );
+  await CRUDFunctions.create();
 
-  res.send("Teste");
+  res.send("Finished");
 });
 
 /**
- * GET Stock Test
+ * POST Stock Test
  */
 
 module.exports = router;
