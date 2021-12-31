@@ -1,7 +1,5 @@
-const FinancialMPModel = require("../model/FinancialMPModel");
 const RequestModel = require("../model/RequestModel");
 const RequestManager = require("../model/FinancialMPManager");
-const myFinancialMPModel = new FinancialMPModel();
 const requestModel = new RequestModel();
 const requestManager = new RequestManager();
 const typeOfRequest = requestModel.typeOfRequest;

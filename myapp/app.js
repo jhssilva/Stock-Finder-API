@@ -10,6 +10,9 @@ var stocksRouter = require("./routes/stocks");
 
 var app = express();
 
+// Import Database
+const db = require("./model/mongodb/connection");
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "jade");

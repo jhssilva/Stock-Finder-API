@@ -21,11 +21,14 @@ const infoOperationSchema = new Schema({
   lastUpdate: { type: Date, default: Date.now },
 });
 
-const stockSchema = new Schema({
-  ticket: { type: String, required: true, unique: true }, // String is shorthand for {type: String}
-  DBInfo: { infoOperationSchema },
-  financialStatements: { financialStatementsSchema },
-});
+const stockSchema = new Schema(
+  {
+    ticket: { type: String, required: true, unique: true }, // String is shorthand for {type: String}
+    DBInfo: { infoOperationSchema },
+    financialStatements: { financialStatementsSchema },
+  },
+  { collection: "stocks" }
+);
 
 const model = mongoose.model("StockModel", stockSchema);
 

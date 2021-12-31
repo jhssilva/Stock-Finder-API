@@ -6,7 +6,6 @@ const RequestModel = require("../model/RequestModel");
 const financialMPController = require("../controller/FinancialMPController");
 const myFinancialMPController = new financialMPController();
 
-const db = require("../model/mongodb/connection");
 const CRUD = require("../model/mongodb/CRUD");
 const CRUDFunctions = new CRUD();
 
@@ -47,9 +46,9 @@ router.post("/test", async function (req, res, next) {
   // console.log(
   //   "ParsedOriginalURL: " + JSON.stringify(req._parsedOriginalUrl, null, 4)
   // );
-  await CRUDFunctions.create();
+  const response = await CRUDFunctions.create();
 
-  res.send("Finished");
+  res.send(response);
 });
 
 /**
