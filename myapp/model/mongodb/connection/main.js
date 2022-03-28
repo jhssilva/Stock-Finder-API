@@ -3,13 +3,16 @@ const mongoose = require("mongoose");
 const secretConstants = require("./secret");
 const scData = secretConstants;
 const { Worker } = require("worker_threads");
-const financialGetDataPath = "./model/FinancialMPGetData.js";
+const financialGetDataPath = "./model/financialmp/getData.js";
 
 main().catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect(scData.url);
-  run().catch((err) => console.error(err));
+  console.log("Connecting to Database...");
+  await mongoose.connect(scData.urlComplete);
+  console.log("Connected Successfuly!");
+  // console.log("Start Thread Stocks into the DataBase");
+  // run().catch((err) => console.error(err));
 }
 
 function runService(workerData) {

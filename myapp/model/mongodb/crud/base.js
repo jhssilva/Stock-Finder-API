@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Stock = require("./Stock");
 
-module.exports = class CRUDE {
+module.exports = class Crude {
   constructor() {}
   async create() {
     const stock = {

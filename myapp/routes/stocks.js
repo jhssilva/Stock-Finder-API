@@ -1,20 +1,25 @@
 var express = require("express");
 var router = express.Router();
 
-const RequestModel = require("../model/RequestModel");
+const {
+  listWithFinancialStatements,
+  createListStocksWithFinancialStatements,
+} = require("../controller/stocks");
 
-const financialMPController = require("../controller/FinancialMPController");
-const myFinancialMPController = new financialMPController();
-
-const CRUD = require("../model/mongodb/CRUD");
+const CRUD = require("../model/mongodb/crud/base");
 const CRUDFunctions = new CRUD();
 
 /* GET stocks listing. */
-router.get("/", function (req, res, next) {
-  myFinancialMPController.stocksListWithFinancialStatements(function (
-    err,
-    data
-  ) {
+router.get("/list", function (req, res, next) {
+  listWithFinancialStatements(function (err, data) {
+    if (err) return res.send(err);
+    res.send(data);
+  });
+});
+
+/* POST stocks listing. */
+router.post("/list", function (req, res, next) {
+  createListStocksWithFinancialStatements(function (err, data) {
     if (err) return res.send(err);
     res.send(data);
   });
@@ -25,11 +30,11 @@ router.get("/", function (req, res, next) {
  */
 router.get("/income-statement", function (req, res, next) {
   //Check security?! Or should I do this in the controller?
-  let stock = req.query.stock;
-  myFinancialMPController.stockIncomeStatements(stock, function (err, data) {
-    if (err) return res.send(err);
-    res.send(data);
-  });
+  // let stock = req.query.stock;
+  // financialMP_Request.stockIncomeStatements(stock, function (err, data) {
+  //   if (err) return res.send(err);
+  //   res.send(data);
+  // });
 });
 
 /**

@@ -11,7 +11,7 @@ var stocksRouter = require("./routes/stocks");
 var app = express();
 
 // Import Database
-const db = require("./model/mongodb/connection");
+const db = require("./model/mongodb/connection/main");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

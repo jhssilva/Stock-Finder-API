@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const ObjectId = Schema.ObjectId;
 
 const incomeStatementSchema = new Schema({});
 
@@ -23,9 +24,10 @@ const infoOperationSchema = new Schema({
 
 const stockSchema = new Schema(
   {
+    author: ObjectId,
     ticket: { type: String, required: true, unique: true }, // String is shorthand for {type: String}
     DBInfo: { infoOperationSchema },
-    financialStatements: { financialStatementsSchema },
+    // financialStatements: { financialStatementsSchema },
   },
   { collection: "stocks" }
 );

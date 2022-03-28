@@ -1,10 +1,10 @@
 // Data Handler -> Perform requests
 const https = require("https");
 
-const RequestModel = require("./RequestModel");
+const RequestModel = require("./requestmodel");
 const requestModel = new RequestModel();
 
-module.exports = class FinancialMPManager {
+module.exports = class Manager {
   constructor() {
     this.requestData = requestModel.financialModelingPrep;
   }
