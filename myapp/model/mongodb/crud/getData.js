@@ -1,10 +1,10 @@
 const { mainModule } = require("process");
 const { workerData, parentPort } = require("worker_threads");
-const RequestModel = require("./requestmodel");
-const RequestManager = require("./manager");
+const RequestModel = require("../../financialmp/api/requestmodel");
+const RequestManager = require("../../financialmp/api/manager");
 const requestModel = new RequestModel();
 const requestManager = new RequestManager();
-const Stock = require("../mongodb/stock");
+const Stock = require("../schemas/stock");
 
 function setStocksDataBase() {
   getStocksWithFinancialStatements(function (data, err) {

@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Stock = require("./Stock");
+const Stock = require("../schemas/stock");
 
 module.exports = class Crude {
   constructor() {}
