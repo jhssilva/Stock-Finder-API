@@ -1,55 +1,52 @@
 const { mainModule } = require("process");
-const { workerData, parentPort } = require("worker_threads");
-const RequestModel = require("../../financialmp/api/requestmodel");
-const RequestManager = require("../../financialmp/api/manager");
-const requestModel = new RequestModel();
-const requestManager = new RequestManager();
 const Stock = require("../schemas/stock");
+const requests = require("../../financialmp/api/requests");
+const mongoose = require("mongoose");
 
-function setStocksDataBase() {
-  getStocksWithFinancialStatements(function (data, err) {
-    if (err) {
-      parentPort.postMessage("Error - " + err); // Send error to parent (Not sure how to do it yet)
-      parentPort.close();
-      return;
-    }
+module.exports = function setStocksDataBase() {
+  console.log("Start Thread Stocks into the DataBase");
+  // Set stock with financial statements
+  setStocksSymbols();
+  // setFinancialStatementsAllStocks();
+};
+
+const setStocksSymbols = () => {
+  requests.stocksListWithFinancialStatements(function (data, err) {
     var tickets = JSON.parse(data);
-    const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+
+    const stocks = [];
 
     for (var i = 0; i < tickets.length; i++) {
-      const update = {
-        $set: {
-          ticket: tickets[i].toString(),
-        },
-      };
-      const query = { ticket: tickets[i].toString() };
-      Stock.findOneAndUpdate(query, update, options, function (err, result) {
-        if (err) {
-          console.log("Error while creating stock - " + err);
-          return;
-        }
-      });
+      const ticket = tickets[i].toString();
+
+      stocks.push(new Stock.stock({ ticket: ticket }));
     }
+
+    Stock.stock.insertMany(stocks, (err) => {
+      console.log("Error inserting stocks into the DB. Error ->  " + err);
+    });
   });
-}
-function main() {
-  setStocksDataBase();
-}
+};
 
-main();
+const setFinancialStatementsAllStocks = async () => {
+  const stocks = await stockSchema.find();
+  for (let i = 0; i < stocks.length; i++) {
+    const current = stocks[i].ticket;
+    const stockSchema = Schema;
 
-//parentPort.postMessage(MessageEvent(error));
-
-// You can do any heavy stuff here, in a synchronous way
-// without blocking the "main thread"
-//parentPort.postMessage({ hello: workerData });
-async function getStocksWithFinancialStatements(callback) {
-  requestManager.request(
-    requestModel.typeOfRequest.get,
-    requestModel.financialModelingPrep.endPoints.financialStatementSymbolsList,
-    function (data, err) {
-      if (err) return callback(null, err);
-      return callback(data, false);
-    }
-  );
-}
+    stockSchema.ticket = current;
+    console.log(stockSchema.ticket);
+    // Get Income Statement
+    requests.stockIncomeStatements(current, (data, err) => {
+      if (err) {
+        console.log(
+          "Error while getting Income Statement information for  " +
+            current +
+            " . Error: " +
+            err
+        );
+        return;
+      }
+    });
+  }
+};

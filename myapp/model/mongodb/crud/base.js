@@ -34,6 +34,6 @@ module.exports = class Crude {
   }
 
   async delete() {
-    const delet = Stock.deleteOne({ ticket: "Teste" });
+    const del = Stock.deleteOne({ ticket: "Teste" });
   }
 };

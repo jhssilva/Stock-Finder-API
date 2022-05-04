@@ -10,9 +10,7 @@ module.exports = {
   handlerCreateListStocksWithFinancialStatements: (callback) => {
     stocksListWithFinancialStatements(function (err, data) {
       if (err) return callback(null, err);
-      //   return callback(data, false);
-      console.log(data);
-      return callback("testee", false);
+      return callback(data, false);
     });
   },
 };

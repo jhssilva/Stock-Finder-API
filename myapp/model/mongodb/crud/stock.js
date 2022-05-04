@@ -5,7 +5,6 @@ module.exports = {
     // * res is from MongoDB database server
     const res = await Stock.create(stockSchema);
     return res;
-    //return callback(res, false);
   },
   read: async () => {},
   update: async () => {

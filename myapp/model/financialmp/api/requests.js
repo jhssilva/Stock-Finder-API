@@ -15,7 +15,7 @@ module.exports = {
       requestModel.typeOfRequest.get,
       requestModel.financialModelingPrep.endPoints
         .financialStatementSymbolsList,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -31,7 +31,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.incomeStatement + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -47,7 +47,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.stockBalanceSheetStatements + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -62,7 +62,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.stockCashFlowStatements + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -78,7 +78,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.incomeStatementAsReported + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -94,7 +94,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.balanceSheetStatementAsReported + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -110,7 +110,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.cashFlowStatementAsReported + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -126,7 +126,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.annualReportOnForm10K + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -142,7 +142,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.companyProfile + "/" + stock,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -157,7 +157,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.mostLosers,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -172,7 +172,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.mostWinners,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
@@ -187,7 +187,7 @@ module.exports = {
     requestManager.request(
       typeOfRequest.get,
       endPoints.tresuaryRates,
-      function (err, data) {
+      function (data, err) {
         if (err) return callback(null, err);
         return callback(data, false);
       }
