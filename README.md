@@ -14,3 +14,5 @@ Finance API -> https://finnhub.io/docs/api
 package -> https://www.npmjs.com/package/finnhub
 
 ---
+
+Stop developing, since it doesn't add any value. 
